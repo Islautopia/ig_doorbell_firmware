@@ -14,10 +14,13 @@ así que comparar "¿mi versión instalada es menor que la última publicada aqu
 comparación directa de cadenas, sin trucos.
 
 Cada release incluye:
-- El binario (`ig_doorbell.bin`), listo para flashear por OTA.
+- El binario, nombrado `ig_doorbell-hw<hw_version>.bin` (por ejemplo `ig_doorbell-hw1.0.1.bin`),
+  listo para flashear por OTA. **La versión de hardware va en el propio nombre del fichero a
+  propósito** — el día que exista más de una revisión de placa, una misma release puede traer
+  varios binarios (uno por `hw_version` compatible), y quien consuma esto (la app) debe elegir
+  el asset cuyo nombre contenga el `hw_version` que el propio dispositivo reporta en
+  `GET /api/firmware_info` — nunca asumir que "el último asset" es válido para todo el parque.
 - Notas de la versión — qué cambió, en lenguaje llano, no un `git log` en crudo.
-- La versión de hardware compatible (`hw_version`) — por ahora solo existe una revisión de
-  placa, pero el campo ya está pensado para cuando haya más de una.
 
 Cuando hay una versión nueva, el propio dispositivo (con tu permiso, nunca solo) se descarga el
 `.bin` de aquí directamente por HTTPS y se actualiza él mismo. Nadie sube nada a mano al
